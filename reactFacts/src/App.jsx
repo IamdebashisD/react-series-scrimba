@@ -11,7 +11,7 @@ function App() {
       <div style={{
         width: '686px',
         height: '459px',
-        top: '91px'
+        top: '91px',
       }}>
 
         <header style={{
@@ -23,6 +23,7 @@ function App() {
           backgroundColor: '#21222A',
           margin: 0,
           padding: '18 30px',
+          borderRadius: '10px'
         }}>
           <img src="src/assets/react.svg"
             alt="reactjs-icon"
@@ -47,7 +48,7 @@ function App() {
           </h2>
         </header>
 
-        <main style={{ width: '681px', height: '459px', backgroundColor: '#282D35', padding: '20px 27px', margin: 0 }}>
+        <main style={{ width: '681px', height: '459px', backgroundColor: '#282D35', padding: '20px 27px', margin: 0, borderRadius: '10px' }}>
 
           <h2 style={{
             width: 'flex',
