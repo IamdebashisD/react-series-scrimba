@@ -1,6 +1,6 @@
 export default function MainContent() {
     return (
-        <main >
+        <main className="main">
             <h1>Reasons, I'm exited to learn React</h1>
 
             <ol>

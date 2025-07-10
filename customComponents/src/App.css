@@ -57,6 +57,11 @@
   text-decoration-color: blueviolet;
 }
 
+.main {
+  align-items: center;
+  padding: 16px;
+}
+
 
 .footer{
   background-color: black;
