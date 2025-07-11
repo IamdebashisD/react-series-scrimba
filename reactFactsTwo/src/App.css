@@ -1,0 +1,102 @@
+/* #root {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 2rem;
+  
+  background-color: #282D35;
+} */
+
+.logo {
+  height: 6em;
+  padding: 1.5em;
+  will-change: filter;
+  transition: filter 300ms;
+}
+.logo:hover {
+  filter: drop-shadow(0 0 2em #646cffaa);
+}
+.logo.react:hover {
+  filter: drop-shadow(0 0 2em #61dafbaa);
+}
+
+@keyframes logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  a:nth-of-type(2) .logo {
+    animation: logo-spin infinite 20s linear;
+  }
+}
+
+.card {
+  padding: 2em;
+}
+
+.read-the-docs {
+  color: #888;
+}
+
+body {
+  margin: 0;
+  font-family: Inter, sans-serif;
+  background-color: #282D35;
+  color: #FFFFFF;
+}
+
+header {
+  height: 90px;
+  background-color: #21222A;
+  padding: 30px 25px;
+}
+
+nav {
+  display: flex;
+  align-items: center;
+  height: 100%;
+
+}
+
+nav > img {
+  width: 50px;
+  margin-right: 7px;
+}
+nav > span {
+  color: #61DAFB;
+  font-size: 1.4rem;
+  font-weight: 700;
+}
+
+main {
+  padding: 60px 30px;
+  background-image: url(assets/reactjs-icon.svg);
+  background-repeat: no-repeat;
+  background-position: right 70%;
+}
+
+main > h1 {
+  margin: 0;
+  font-size: 2.4rem;
+}
+
+.facts-list {
+    margin-top: 46px;
+    max-width: 600px;
+}
+
+
+.list {
+  padding-block: 10px;
+  line-height: 19px;
+  font-weight: 400;
+}
+
+.list::marker {
+  color: #61DAFB;
+  font-size: 1.5rem;
+}
