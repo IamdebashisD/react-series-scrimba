@@ -1,4 +1,3 @@
-
 import './App.css'
 import Globe from './assets/Globe.png'
 import Header from './components/Header'
