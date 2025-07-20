@@ -1,7 +1,6 @@
 
 import './App.css'
 import Globe from './assets/Globe.png'
-import locationMark from './assets/locationMark.png'
 import Header from './components/Header'
 import TravelEntry from './components/TravelEntry'
 
