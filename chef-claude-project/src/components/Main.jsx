@@ -1,25 +1,59 @@
 import React from 'react'
+import '@fontsource/inter';
+import IngredientsList from './IngredientsList';
+import Section from './Section';
+import trashThreeHover from '../assets/trashThreeHover.png'
+import { getRecipeFromMistral } from '../ai.js'
 
+  
 function Main() {
-
   const [inputValue, setInputValue] = React.useState('')
-  const [ingredients, setIngredients] = React.useState([])
+  const [ingredients, setIngredients] = React.useState(["chicken", "Curd", "Garlic", "Corn flower", "Oil", "Red Chillies" ])
+  const [recipe, setRecipe] = React.useState("")
+  const [isLoading, setIsLoading] = React.useState(false)
 
-  const handleSubmit = (e) => {
 
-    e.preventDefault()
+  // Function for incoming data from user input  
+  const handleSubmit = (event) => {
+    event.preventDefault()
     if(inputValue.trim()){
       setIngredients([...ingredients, inputValue])
       setInputValue('')
     }
   }
 
-  const ingredient = ingredients.map((item, index)=>(
-    <li key={index}>
-      {item}
+  const VITE_HF_ACCESS_TOKEN = import.meta.env.VITE_HF_ACCESS_TOKEN;
+  const getResponse = async () => {
+    setIsLoading(true)
+    try{
+      const recipeMarkdown = await getRecipeFromMistral(ingredients, VITE_HF_ACCESS_TOKEN)
+      setRecipe(recipeMarkdown)
+      console.log(recipeMarkdown)
+    }catch(error){
+      console.log("Failed to get recipe:", error)
+    }finally{
+      setIsLoading(false)
+    }
+  }
+
+  const deleteItem = (index) => {
+    setIngredients( prev => prev.filter((item, currentIndex) => currentIndex !== index))
+  }
+  
+
+  const ingredient = ingredients.map((item, index) => (
+    <li 
+      key={index}
+      className="relative items-center justify-between px-2 py-1 pl-2 hover:bg-gray-300 hover:rounded-xl"
+    >
+      <span className='flex-1'>{item}</span>  
+      <button
+        onClick={() => deleteItem(index)}
+        className='absolute -translate-y-1/2 rounded-full right-3 top-1/2'>
+        <img src={trashThreeHover} width={24} height={18} alt="deleteBtn" /> 
+      </button>
     </li>
   ))
-
 
 
   return (
@@ -39,16 +73,22 @@ function Main() {
         />
         <button
           type="submit"
-          className="before:content-['+'] before:mr-[5px] py-[9px] px-[13px] w-[170px] text-[#FAFAF8] bg-[#141413] rounded-md focus:ring-2 focus:ring-white font-medium"
+          className="before:content-['+'] before:mr-[5px] py-[9px] px-[13px] w-[160px] text-[#FAFAF8] bg-[#141413] rounded-md focus:ring-2 focus:ring-blue font-medium shadow-sm"
         >
         Add Ingredient
         </button>
       </form>
-  
-      <ul className='absolute'>
-        {ingredient}
-      </ul>
-    
+
+      {ingredients.length > 0 && 
+          <IngredientsList 
+            ingredient={ingredient}
+            ingredients={ingredients}
+            getResponse={getResponse}
+            isLoading={isLoading}
+          />
+      }
+
+    {recipe && <Section recipe={recipe}/>}
     </main>
   )
 }
