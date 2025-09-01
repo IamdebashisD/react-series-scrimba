@@ -8,9 +8,11 @@ import { getRecipeFromMistral } from '../ai.js'
   
 function Main() {
   const [inputValue, setInputValue] = React.useState('')
-  const [ingredients, setIngredients] = React.useState(["chicken", "Curd", "Garlic", "Corn flower", "Oil", "Red Chillies" ])
+  const [ingredients, setIngredients] = React.useState(["chicken", "Curd", "Garlic", "Corn flower", "shimla chili", "Red Chillies" ])
   const [recipe, setRecipe] = React.useState("")
   const [isLoading, setIsLoading] = React.useState(false)
+  const recipeSection = React.useRef(null)
+
 
 
   // Function for incoming data from user input  
@@ -35,10 +37,17 @@ function Main() {
       setIsLoading(false)
     }
   }
-
+  // Method for delete the item
   const deleteItem = (index) => {
     setIngredients( prev => prev.filter((item, currentIndex) => currentIndex !== index))
   }
+  
+  // Method for directly jump or scroll to the recipe section
+  React.useEffect(()=>{
+    if(recipe && recipeSection.current){
+      recipeSection.current.scrollIntoView({ behavior: 'smooth'})
+    }
+  },[recipe])
   
 
   const ingredient = ingredients.map((item, index) => (
@@ -85,10 +94,12 @@ function Main() {
             ingredients={ingredients}
             getResponse={getResponse}
             isLoading={isLoading}
+            ref={recipeSection}
           />
       }
 
     {recipe && <Section recipe={recipe}/>}
+
     </main>
   )
 }

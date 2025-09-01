@@ -46,7 +46,7 @@ export default function IngredientsList(props) {
       </ul>
 
       {props.ingredients.length > 3 && <div className='flex mb-8 justify-between items-center rounded-lg bg-[#dadada] px-10 py-[20px]'>
-        <div>
+        <div ref={props.ref}>
           <h3 className='text-lg font-medium leading-[24px]'>Ready for a recipe?</h3>
           <p className='text-[#6B7280] text-balance leading-[30px]'>Generate a recipe from your list of ingredients.</p>
         </div>
