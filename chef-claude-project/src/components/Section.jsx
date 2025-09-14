@@ -1,5 +1,8 @@
 import React from 'react';
 import ReactMarkdown from 'react-markdown';
+import SpeakerButton from './SpeakerButton';
+import volume from '../assets/volume.png'
+import pause from '../assets/pauseTwo.png'
 
 function Section({ recipe }) {
     return (
@@ -7,6 +10,9 @@ function Section({ recipe }) {
             <h2 className='flex-1 mb-5 font-inter font-semibold text-[30px] leading-[38px] tracking-normal text-[#141413]'>
                 Chef Claude Recommends:
             </h2>
+    
+             <SpeakerButton text={recipe} volume={volume} pause={pause} />
+
             <article 
                 className="suggested-recipe-container text-[#475467] prose max-w-none" 
                 aria-live="polite"

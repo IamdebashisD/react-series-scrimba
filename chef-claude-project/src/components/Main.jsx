@@ -49,7 +49,7 @@ function Main() {
     }
   },[recipe])
   
-
+  // listing all the ingredients using map() function
   const ingredient = ingredients.map((item, index) => (
     <li 
       key={index}
